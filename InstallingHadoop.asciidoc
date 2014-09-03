@@ -28,6 +28,7 @@ First we need to set the hostname and add that to `etc\hosts`.
 
 [source,bash]
 ----
+TBD
 ----
 
 The next step is to make it possible to create an Secure Shell (SSH) connection to localhost without being prompted for a password. Hadoop is designed to run on multiple servers and uses SSH to connect and start services on remote servers.
