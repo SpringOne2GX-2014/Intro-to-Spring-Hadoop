@@ -28,7 +28,7 @@ Install a basic VM with 4GB of memory and 40GB of disk space if you have this av
 
 First we need to set the hostname. Log in as `root` and modify `/etc/sysconfig/network`. Set `HOSTNAME=borneo` or whatever hostname you choose. 
 
-Now we need to find the IP address for the "Host-only adpater". Run `ifconfig and look for an IP address that starts with '192.168' -
+Now we need to find the IP address for the "Host-only adpater". Run `ifconfig` and look for an IP address that starts with '192.168' -
 
 [source]
 ----
