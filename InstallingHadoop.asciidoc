@@ -1,5 +1,5 @@
-Intrduction to Spring for Apache Hadoop
-=======================================
+Introduction to Spring for Apache Hadoop
+========================================
 
 Installing Hadoop
 -----------------
