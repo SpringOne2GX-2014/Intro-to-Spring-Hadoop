@@ -30,7 +30,7 @@ First we need to set the hostname. Log in as `root` and modify `/etc/sysconfig/n
 
 Now we need to find the IP address for the "Host-only adpater". Run `ifconfig and look for an IP address that starts with '192.168' -
 
-[source,bash]
+[source]
 ----
 # ifconfig
 eth0      Link encap:Ethernet  HWaddr 08:00:27:1A:B0:08  
@@ -40,7 +40,7 @@ eth0      Link encap:Ethernet  HWaddr 08:00:27:1A:B0:08
 
 Next, modify `\etc\hosts` and add your IP address and hostname like:
 
-[source,bash]
+[source]
 ----
 127.0.0.1         localhost.localdomain localhost
 192.168.59.103    borneo
@@ -48,7 +48,7 @@ Next, modify `\etc\hosts` and add your IP address and hostname like:
 ----
 
 Now run `hostname with your new hostname as parameter:
-[source,bash]
+[source]
 ----
 # hostname borneo
 # hostname
@@ -57,7 +57,7 @@ borneo
 
 Last step is to restart networking or simply rebot the VM.
 
-[source,bash]
+[source]
 ----
 # /etc/init.d/network restart
 Shutting down loopback interface:                          [  OK  ]
@@ -70,7 +70,7 @@ The next step is to make it possible to create an Secure Shell (SSH) connection 
 
 The CentOS default install should have SSH installed, if not install it logged in as `root`:
 
-[source,bash]
+[source]
 ----
 # yum -y install openssh-server openssh-clients
 ----
