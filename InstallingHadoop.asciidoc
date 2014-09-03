@@ -229,7 +229,7 @@ We also need to add your JAVA_HOME to the file `etc/hadoop/hadoop-env.sh`. Look 
 export JAVA_HOME=${JAVA_HOME}
 ----
 
-Replace that _export_ with your actual JAVA_HOME directory.
+Replace that _${JAVA_HOME}_ with your actual JAVA_HOME directory like: `/usr/lib/jvm/jre-1.7.0-openjdk/bin/java`.
 
 Now we are ready to setup our environment, there are a handful of environment variables to set.
 
@@ -240,6 +240,13 @@ export HADOOP_PREFIX=~/hadoop-2.4.1
 export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
 export YARN_CONF_DIR=$HADOOP_CONF_DIR
 export PATH=$PATH:$HADOOP_PREFIX/bin
+----
+
+You can put these in a file named `hadoop-env` and then just `source that file like:
+
+[source,bash]
+----
+$ source hadoop-env
 ----
 
 === Install Hive
