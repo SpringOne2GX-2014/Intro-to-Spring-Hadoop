@@ -114,16 +114,16 @@ Connection to borneo closed.
 
 To install and run Hadoop we will be using a recent version of Java 7. We could use a late Java 6 update, but the Hadoop ecosystem of projects seems to be slowly moving towards Java 7 as the preferred platform.
 
-For CentOS/Red Hat Linux you we install OpenJDK by running this command as root:
+For CentOS/Red Hat Linux you we install OpenJDK by running this command as `root`:
 
-[source,bash]
+[source]
 ----
-$ yum -y install java-1.7.0-openjdk-devel
+# yum -y install java-1.7.0-openjdk-devel
 ----
 
 === Download Hadoop
 
-We need to download the binary distribution. The latest version available when writing this is Apache Hadoop 2.4.1. The link for downloading is available at http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/[http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/]. Download the `hadoop-2.4.1.tar.gz` archive and unpack it locally.  
+We need to download the binary distribution. The latest version available when writing this is Apache Hadoop 2.4.1. The link for downloading is available at http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/[http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/]. Log in as the `hadoop` user and download the `hadoop-2.4.1.tar.gz` archive and unpack it locally.  
 
 You can unpack the distribution with:
 
