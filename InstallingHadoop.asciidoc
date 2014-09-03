@@ -24,18 +24,47 @@ Install a basic VM with 4GB of memory and 40GB of disk space if you have this av
 
 === Configure networking and SSH
 
-First we need to set the hostname. Log in as `root` and modify `/etc/sysconfig/network`. Set `HOSTNAME=borneo` or whatever hostname you choose. Next, modify `\etc\hosts` and add your IP address and hostname like:
+==== Set hostname
 
+First we need to set the hostname. Log in as `root` and modify `/etc/sysconfig/network`. Set `HOSTNAME=borneo` or whatever hostname you choose. 
+
+Now we need to find the IP address for the "Host-only adpater". Run `ifconfig and look for an IP address that starts with '192.168' -
+
+[source,bash]
+----
+# ifconfig
+eth0      Link encap:Ethernet  HWaddr 08:00:27:1A:B0:08  
+          inet addr:192.168.59.103  Bcast:192.168.59.255  Mask:255.255.255.0
+...
+----
+
+Next, modify `\etc\hosts` and add your IP address and hostname like:
+
+[source,bash]
 ----
 127.0.0.1         localhost.localdomain localhost
 192.168.59.103    borneo
 ::1        localhost6.localdomain6 localhost6
 ----
 
+Now run `hostname with your new hostname as parameter:
 [source,bash]
 ----
-TBD
+# hostname borneo
+# hostname
+borneo
 ----
+
+Last step is to restart networking or simply rebot the VM.
+
+[source,bash]
+----
+# /etc/init.d/network restart
+Shutting down loopback interface:                          [  OK  ]
+Bringing up loopback interface:                            [  OK  ]
+----
+
+==== Configure SSH
 
 The next step is to make it possible to create an Secure Shell (SSH) connection to localhost without being prompted for a password. Hadoop is designed to run on multiple servers and uses SSH to connect and start services on remote servers.
 
