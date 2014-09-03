@@ -47,7 +47,7 @@ Next, modify `\etc\hosts` and add your IP address and hostname like:
 ::1        localhost6.localdomain6 localhost6
 ----
 
-Now run `hostname with your new hostname as parameter:
+Now run `hostname` with your new hostname as parameter:
 [source]
 ----
 # hostname borneo
