@@ -3,3 +3,166 @@ Intrduction to Spring for Apache Hadoop
 
 Installing Hadoop
 -----------------
+
+There are many ways to get started using Hadoop. A fully production ready system uses many servers and is time consuming to install and configure. There are ready to use single-node VMs that you can download from several companies providing their own Hadoop distributions. While they are convenient, they do use 4 to 8GB of memory on your system and are usually configured to only accept connections from apps running on the local VM.
+
+Linux users can install _Hadoop_ from packages provided by the major Hadoop vendors or from packages provided by the link:http://bigtop.apache.org/[Apache BigTop project]. On Mac OS X, you can use link:http://brew.sh/[Homebrew]. Windows users can install using prebuilt packages from link:http://hortonworks.com/hdp/downloads/[Hortonworks] or build their own binaries from the Apache Hadoop project's source following instructions on the link:http://wiki.apache.org/hadoop/Hadoop2OnWindows[Apache Wiki].
+
+You can also download the binary distribution from the Apache Hadoop project and run it on a UNIX-like system. The following instructions describe how to use the Apache Hadoop binaries and set up a local single-node cluster in a virtual machine (VM) using the link:http://www.centos.org/[CentOS distribution]. This VM can then be run on your development system.
+
+=== Install VirtualBox 
+
+link:https://www.virtualbox.org/[VirtualBox] is free open source virtualization software that allows you to easly create virtual machines. We will be using it to create a VM for our Hadoop installation. Download the package for your operating system from link:https://www.virtualbox.org/wiki/Downloads[https://www.virtualbox.org/wiki/Downloads]. Follow the installation instruction that correspond to your operating system.
+
+Once you have VirtualBox install and up and running we can create our virtual machine.
+
+=== Create a CentOS VM
+
+You can download the Centos 6.5 32-bit ISO from one of the mirrors at link:http://mirror.centos.org/centos/6/isos/i386/[http://mirror.centos.org/centos/6/isos/i386/]. We are using the 32-bit version since the binary Apache Hadoop distribution ships with 32-bit native libraries.
+
+Install a basic VM with 4GB of memory and 40GB of disk space if you have this available. Create a 'hadoop' user as part of the install. The 'hadoop' user will be the owner of all Hadoop software that we install later.
+
+=== Configure networking and SSH
+
+First we need to set the hostname and add that to `etc\hosts`.
+
+[source,bash]
+----
+----
+
+The next step is to make it possible to create an Secure Shell (SSH) connection to localhost without being prompted for a password. Hadoop is designed to run on multiple servers and uses SSH to connect and start services on remote servers.
+
+The CentOS default install doesn't have SSH installed or enabled you need to take care of this first:
+
+[source,bash]
+----
+yum -y install openssh-server openssh-clients
+services start sshd
+----
+
+Next, we need to generate and store our SSH certificates in the `autorized_keys` on the local system. We can use `ssh-keygen` for this.
+
+[source,bash]
+----
+$ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa 
+$ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
+$ chmod 600 ~/.ssh/authorized_keys
+----
+
+We should now be able to create an SSH connection to `localhost` without being prompted for a password (if you get a prompt for adding localhost to the known hosts file, just enter 'yes'):
+
+[source,bash]
+----
+$ ssh localhost
+Last login: Sun Jun 15 10:00:52 2014 from localhost
+$ 
+----
+
+=== Install Java
+
+To install and run Hadoop we will be using a recent version of Java 7. We could use a late Java 6 update, but the Hadoop ecosystem of projects seems to be slowly moving towards Java 7 as the preferred platform.
+
+For CentOS/Red Hat Linux you we install OpenJDK by running this command as root:
+
+[source,bash]
+----
+$ yum -y install java-1.7.0-openjdk-devel
+----
+
+=== Download Hadoop
+
+We need to download the binary distribution. The latest version available when writing this is Apache Hadoop 2.4.1. The link for downloading is available at http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/[http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/]. Download the `hadoop-2.4.1.tar.gz` archive and unpack it locally.  
+
+You can unpack the distribution with:
+
+[source,bash]
+----
+$ tar xzf hadoop-2.4.1.tar.gz
+----
+
+We now have the base for our installation and we'll work through the steps to get the Hadoop system up and running.
+
+=== Hadoop configuration files 
+
+The following configuration files are meant for a for single-node cluster running in pseudo-distributed mode. All configuration files are located in the `etc\hadoop` directory and we need to modify the following ones:
+
+.core-site.xml
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+ 
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://borneo:8020</value>
+    <final>true</final>
+  </property>
+ 
+  <property>
+    <name>hadoop.tmp.dir</name>
+    <value>${user.home}/Hadoop/data</value>
+    <description>A base for other temporary directories.</description>
+  </property>
+ 
+</configuration>
+----
+
+.hdfs-site.xml
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+ 
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+ 
+</configuration>
+----
+
+.yarn-site.xml
+[source,xml]
+----
+<?xml version="1.0"?>
+<configuration>
+ 
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+ 
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+ 
+</configuration>
+----
+
+We also need to add your JAVA_HOME to the file `etc/hadoop/hadoop-env.sh`. Look for the following content in the beginning of the file:
+
+[source,bash]
+----
+# The java implementation to use.
+export JAVA_HOME=${JAVA_HOME}
+----
+
+Replace that _export_ with your actual JAVA_HOME directory.
+
+Now we are ready to setup our environment, there are a handful of environment variables to set.
+
+[source,bash]
+----
+export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+export HADOOP_PREFIX=~/hadoop-2.4.1
+export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop
+export YARN_CONF_DIR=$HADOOP_CONF_DIR
+export PATH=$PATH:$HADOOP_PREFIX/bin
+----
+
+=== Install Hive
+
+=== Start Hadoop and Hive server2
