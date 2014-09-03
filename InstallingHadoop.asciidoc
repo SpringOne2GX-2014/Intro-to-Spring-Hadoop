@@ -294,8 +294,8 @@ $ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /xd
 $ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /xd
 $ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /tweets
 $ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /tweets
-$ HADOOP_USER_NAME=yarn hadoop fs -mkdir /tmp/hadoop-yarn
-$ HADOOP_USER_NAME=yarn hadoop fs -chmod -R 777 /tmp/hadoop-yarn
+$ HADOOP_USER_NAME=hadoop hadoop fs -mkdir /tmp/hadoop-yarn
+$ HADOOP_USER_NAME=hadoop hadoop fs -chmod -R 777 /tmp/hadoop-yarn
 $ HADOOP_USER_NAME=hive hadoop fs -mkdir -p /user/hive/warehouse
 $ HADOOP_USER_NAME=hive hadoop fs -chmod 777 /user/hive/warehouse
 ----
