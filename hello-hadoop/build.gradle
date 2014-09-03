@@ -1,0 +1,47 @@
+description = """hello-hadoop"""
+group = 'com.springdeveloper.demo'
+version = '0.1.0'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'spring-boot'
+apply plugin: 'io.spring.dependency-management'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+     maven { url "http://repo.spring.io/libs-release" }
+     mavenCentral()
+}
+
+dependencyManagement {
+     imports {
+          mavenBom 'io.spring.platform:platform-bom:1.0.1.RELEASE'
+     }
+}
+
+// override the Spring IO Platform versions for the following:
+ext['spring-data-hadoop.version'] = '2.0.2.RELEASE-hadoop24'
+ext['hadoop.version'] = '2.4.1'
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure'
+    compile group: 'org.springframework.data', name: 'spring-data-hadoop'
+    compile group: 'log4j', name: 'log4j'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'http://repo.spring.io/plugins-snapshot'}
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE'
+        classpath 'io.spring.gradle:dependency-management-plugin:0.1.0.RELEASE'
+    }
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = "2.0"
+}
