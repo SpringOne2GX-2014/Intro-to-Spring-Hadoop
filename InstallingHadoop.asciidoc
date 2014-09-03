@@ -266,7 +266,7 @@ To start Hadoop HDFS and YARN run the following commands:
 ----
 $ ./hadoop-2.4.1/sbin/start-dfs.sh
 $ ./hadoop-2.4.1/sbin/start-yarn.sh
-$ ./mr-jobhistory-daemon.sh start historyserver
+$ ./hadoop-2.4.1/sbin/mr-jobhistory-daemon.sh start historyserver
 ----
 
 
