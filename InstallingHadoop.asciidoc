@@ -68,15 +68,24 @@ Bringing up loopback interface:                            [  OK  ]
 
 The next step is to make it possible to create an Secure Shell (SSH) connection to localhost without being prompted for a password. Hadoop is designed to run on multiple servers and uses SSH to connect and start services on remote servers.
 
-The CentOS default install doesn't have SSH installed or enabled you need to take care of this first:
+The CentOS default install should have SSH installed, if not install it logged in as `root`:
 
 [source,bash]
 ----
-yum -y install openssh-server openssh-clients
-services start sshd
+# yum -y install openssh-server openssh-clients
 ----
 
-Next, we need to generate and store our SSH certificates in the `autorized_keys` on the local system. We can use `ssh-keygen` for this.
+Now we should enable and start the `sshd` service, again logged in as `root`:
+
+[source,bash]
+----
+# chkconfig sshd on
+# service sshd start
+----
+
+==== Configure password-less ssh
+
+Next, we need to generate and store our SSH certificates in the `autorized_keys` on the local system. We can use `ssh-keygen` for this. Log in as the `hadoop` user and then run:
 
 [source,bash]
 ----
