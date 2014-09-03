@@ -1,5 +1,16 @@
+*.DS_Store
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.next
 release.properties
+*/.idea/
+*.iml
+*.ipr
+*.iws
+*/.settings/
+*/.classpath
+*/.project
+*/.gradle/
+*/build/
+*.log
