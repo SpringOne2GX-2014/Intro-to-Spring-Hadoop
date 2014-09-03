@@ -20,7 +20,7 @@ Once you have VirtualBox install and up and running we can create our virtual ma
 
 You can download the Centos 6.5 32-bit ISO from one of the mirrors at link:http://mirror.centos.org/centos/6/isos/i386/[http://mirror.centos.org/centos/6/isos/i386/]. We are using the 32-bit version since the binary Apache Hadoop distribution ships with 32-bit native libraries.
 
-Install a basic VM with 4GB of memory and 40GB of disk space if you have this available. Add two network adapters, one using "NAT" and one "Host-only Adpater". If you haven't already created a "Host-only Network", you should do that first, under the VirtualBox Preferences Network tab.Choose a hostname during the install. I picked 'borneo' as the hostname for my server. Create a 'hadoop' user as part of the install. The 'hadoop' user will be the owner of all Hadoop software that we install later.
+Install a basic VM with 4GB of memory and 40GB of disk space if you have this available. Add two network adapters, one using "NAT" and one "Host-only Adpater". If you haven't already created a "Host-only Network", you should do that first, under the VirtualBox Preferences Network tab. Choose a hostname during the install. I picked 'borneo' as the hostname for my server. Create a 'hadoop' user as part of the install. The 'hadoop' user will be the owner of all Hadoop software that we install later.
 
 === Configure networking and SSH
 
