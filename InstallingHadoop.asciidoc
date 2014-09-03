@@ -171,7 +171,12 @@ The following configuration files are meant for a for single-node cluster runnin
         <name>dfs.replication</name>
         <value>1</value>
     </property>
- 
+
+    <property>
+        <name>dfs.support.append</name>
+        <value>true</value>
+    </property>
+
 </configuration>
 ----
 
