@@ -249,6 +249,24 @@ You can put these in a file named `hadoop-env` and then just `source that file l
 $ source hadoop-env
 ----
 
+=== Format the HDFS Namenode
+
+[source,bash]
+----
+$ hdfs namenode -format
+----
+
 === Install Hive
 
 === Start Hadoop and Hive server2
+
+To start Hadoop HDFS and YARN run the following commands:
+
+[source,bash]
+----
+$ ./hadoop-2.4.1/sbin/start-dfs.sh
+$ ./hadoop-2.4.1/sbin/start-yarn.sh
+$ ./mr-jobhistory-daemon.sh start historyserver
+----
+
+
