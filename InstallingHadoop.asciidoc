@@ -269,4 +269,13 @@ $ ./hadoop-2.4.1/sbin/start-yarn.sh
 $ ./hadoop-2.4.1/sbin/mr-jobhistory-daemon.sh start historyserver
 ----
 
+To stop Hadoop HDFS and YARN run the following commands:
 
+[source,bash]
+----
+$ ./hadoop-2.4.1/sbin/mr-jobhistory-daemon.sh stop historyserver
+$ ./hadoop-2.4.1/sbin/stop-yarn.sh
+$ ./hadoop-2.4.1/sbin/stop-dfs.sh
+----
+
+To start Hive run:
