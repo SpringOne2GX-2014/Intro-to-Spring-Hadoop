@@ -258,7 +258,7 @@ $ hdfs namenode -format
 
 === Install Hive
 
-We need to download the binary distribution. The latest version available when writing this is Apache Hive 0.13.1. The link for downloading is available ahttp://www.us.apache.org/dist/hive/hive-0.13.1/[http://www.us.apache.org/dist/hive/hive-0.13.1/]. Logged in as the `hadoop` user download the `apache-hive-0.13.1-bin.tar.gz` archive and unpack it locally.  
+We need to download the binary distribution. The latest version available when writing this is Apache Hive 0.13.1. The link for downloading is available at link:http://www.us.apache.org/dist/hive/hive-0.13.1/[http://www.us.apache.org/dist/hive/hive-0.13.1/]. Logged in as the `hadoop` user download the `apache-hive-0.13.1-bin.tar.gz` archive and unpack it locally.  
 
 You can unpack the distribution with:
 
