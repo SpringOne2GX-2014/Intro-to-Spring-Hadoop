@@ -14,7 +14,7 @@ You can also download the binary distribution from the Apache Hadoop project and
 
 link:https://www.virtualbox.org/[VirtualBox] is free open source virtualization software that allows you to easily create virtual machines. We will be using it to create a VM for our Hadoop installation. Download the package for your operating system from link:https://www.virtualbox.org/wiki/Downloads[https://www.virtualbox.org/wiki/Downloads]. Follow the installation instruction that correspond to your operating system.
 
-Once you have VirtualBox install and up and running we can create our virtual machine.
+Once you have VirtualBox installed and up and running we can create our virtual machine.
 
 === Create a CentOS VM
 
