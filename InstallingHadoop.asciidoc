@@ -267,12 +267,32 @@ You can unpack the distribution with:
 $ tar xzf ~/Downloads/apache-hive-0.13.1-bin.tar.gz
 ----
 
-Set Hive environment:
+=== Create initial directories and set permissions
 
 [source,bash]
 ----
-export HIVE_HOME=~/apache-hive-0.13.1
-export PATH=$PATH:$HIVE_HOME/bin
+$ HADOOP_USER_NAME=hadoop hadoop fs -chown hdfs /
+$ HADOOP_USER_NAME=hadoop hadoop fs -chown hdfs /tmp
+$ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /tmp
+$ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /user
+$ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /user
+$ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /xd
+$ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /xd
+$ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /tweets
+$ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /tweets
+$ HADOOP_USER_NAME=yarn hadoop fs -mkdir /tmp/hadoop-yarn
+$ HADOOP_USER_NAME=yarn hadoop fs -chmod -R 777 /tmp/hadoop-yarn
+$ HADOOP_USER_NAME=hive hadoop fs -mkdir -p /user/hive/warehouse
+$ HADOOP_USER_NAME=hive hadoop fs -chmod 777 /user/hive/warehouse
+----
+
+
+Set the Hive environment:
+
+[source,bash]
+----
+$ export HIVE_HOME=~/apache-hive-0.13.1
+$ export PATH=$PATH:$HIVE_HOME/bin
 ----
 
 === Start Hadoop and Hive server2
