@@ -24,7 +24,13 @@ Install a basic VM with 4GB of memory and 40GB of disk space if you have this av
 
 === Configure networking and SSH
 
-First we need to set the hostname and add that to `etc\hosts`.
+First we need to set the hostname. Log in as `root` and modify `/etc/sysconfig/network`. Set `HOSTNAME=borneo` or whatever hostname you choose. Next, modify `\etc\hosts` and add your IP address and hostname like:
+
+----
+127.0.0.1  localhost.localdomain localhost
+192.168.59.103 borneo
+::1  localhost6.localdomain6 localhost6
+----
 
 [source,bash]
 ----
