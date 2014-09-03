@@ -77,7 +77,7 @@ The CentOS default install should have SSH installed, if not install it logged i
 
 Now we should enable and start the `sshd` service, again logged in as `root`:
 
-[source,bash]
+[source]
 ----
 # chkconfig sshd on
 # service sshd start
