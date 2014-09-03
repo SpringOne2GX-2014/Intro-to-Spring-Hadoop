@@ -94,13 +94,20 @@ $ cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 $ chmod 600 ~/.ssh/authorized_keys
 ----
 
-We should now be able to create an SSH connection to `localhost` without being prompted for a password (if you get a prompt for adding localhost to the known hosts file, just enter 'yes'):
+We should now be able to create an SSH connection to `localhost` without being prompted for a password (if you get a prompt for adding the host to the known hosts file, just enter 'yes'):
 
 [source,bash]
 ----
 $ ssh localhost
-Last login: Sun Jun 15 10:00:52 2014 from localhost
-$ 
+Last login: Wed Sep  3 10:00:52 2014 from borneo
+$ exit
+logout
+Connection to localhost closed.
+$ ssh borneo
+Last login: Wed Sep  3 10:00:52 2014 from localhost.localdomain
+$ exit
+logout
+Connection to borneo closed.
 ----
 
 === Install Java
