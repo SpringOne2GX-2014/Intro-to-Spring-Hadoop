@@ -291,7 +291,7 @@ Set the Hive environment:
 
 [source,bash]
 ----
-$ export HIVE_HOME=~/apache-hive-0.13.1
+$ export HIVE_HOME=~/apache-hive-0.13.1-bin
 $ export PATH=$PATH:$HIVE_HOME/bin
 ----
 
