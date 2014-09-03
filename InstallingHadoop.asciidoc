@@ -97,7 +97,7 @@ Now we should enable and start the `sshd` service, again logged in as `root`:
 # service sshd start
 ----
 
-==== Configure password-less ssh
+==== Configure password-less SSH
 
 Next, we need to generate and store our SSH certificates in the `autorized_keys` on the local system. We can use `ssh-keygen` for this. Log in as the `hadoop` user and then run:
 
