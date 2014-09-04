@@ -169,7 +169,7 @@ The following configuration files are meant for a for single-node cluster runnin
  
   <property>
     <name>hadoop.tmp.dir</name>
-    <value>${user.home}/Hadoop/data</value>
+    <value>${user.home}/hadoop_data</value>
     <description>A base for other temporary directories.</description>
   </property>
  
@@ -285,19 +285,18 @@ Then run the following commands:
 
 [source,bash]
 ----
-$ HADOOP_USER_NAME=hadoop hadoop fs -chown hdfs /
-$ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /tmp
-$ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /tmp
-$ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /user
-$ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /user
-$ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /xd
-$ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /xd
-$ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /tweets
-$ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /tweets
-$ HADOOP_USER_NAME=hadoop hadoop fs -mkdir -p /tmp/hadoop-yarn/staging/history
-$ HADOOP_USER_NAME=hadoop hadoop fs -chmod -R 777 /tmp/hadoop-yarn
-$ HADOOP_USER_NAME=hive hadoop fs -mkdir -p /user/hive/warehouse
-$ HADOOP_USER_NAME=hive hadoop fs -chmod 777 /user/hive/warehouse
+$ hadoop fs -mkdir /tmp
+$ hadoop fs -chmod 1777 /tmp
+$ hadoop fs -mkdir /user
+$ hadoop fs -chmod 1777 /user
+$ hadoop fs -mkdir /xd
+$ hadoop fs -chmod 777 /xd
+$ hadoop fs -mkdir /tweets
+$ hadoop fs -chmod 777 /tweets
+$ hadoop fs -mkdir -p /tmp/hadoop-yarn/staging/history
+$ hadoop fs -chmod -R 777 /tmp/hadoop-yarn
+$ hadoop fs -mkdir -p /user/hive/warehouse
+$ hadoop fs -chmod 777 /user/hive/warehouse
 ----
 
 You can now shut down HDFS using:
