@@ -3,6 +3,8 @@ simple-workflow
 
 Simple Workflow MapReduce example.
 
+**Note:** This example depends on the `tweets-mapreduce` project, so you must first build and install that.
+
 Copies a tweets-hadoop*.txt file to HDFS under /twets/input/workflow dir.
 
 Build with:

@@ -13,6 +13,7 @@ xd:>hadoop fs mkdir /tweets/input
 xd:>hadoop fs mkdir /tweets/input/simple
 xd:>hadoop fs copyFromLocal --from /Users/trisberg/Projects/Intro-to-Spring-Hadoop/data/hadoop-tweets_2014-08-11.txt --to /tweets/input/simple
 ```
+**Note:** Adjust the `--from` path to what you are using.
 
 Build with:
 

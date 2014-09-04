@@ -108,6 +108,7 @@
 		<property name="driverClass" value="${hive.driverClassName}"/>
 		<property name="url" value="${hive.url}"/>
 		<property name="username" value="${hive.username}"/>
+		<property name="password" value="${hive.password}"/>
 	</bean>
 
 	<bean id="exportDataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
