@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:hadoop="http://www.springframework.org/schema/hadoop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/hadoop http://www.springframework.org/schema/hadoop/spring-hadoop.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd">
+
+	<hadoop:configuration>
+		fs.defaultFS=${spring.hadoop.fsUri}
+		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
+		mapreduce.framework.name=yarn
+	</hadoop:configuration>
+
+	<!--
+	  required to access #{jobParameters['...']}
+	-->
+	<bean class="org.springframework.batch.core.scope.StepScope">
+		<property name="proxyTargetClass" value="true"/>
+	</bean>
+
+	<batch:job id="job">
+		<batch:step id="hashtagcount">
+			<batch:tasklet ref="hashtagcountTasklet" />
+		</batch:step>
+	</batch:job>
+
+	<hadoop:job-tasklet id="hashtagcountTasklet" job-ref="hashtagcountJob"/>
+
+	<hadoop:job id="hashtagcountJob"
+		input-path="#{jobParameters['input.path']?:'/tweets/input/batch'}"
+		output-path="#{jobParameters['output.path']?:'/tweets/output'}"
+		libs="file:${xd.home}/modules/job/tweets-hashtags/lib/tweets-mapreduce.jar"
+		mapper="com.springdeveloper.hadoop.TweetCountMapper"
+		reducer="com.springdeveloper.hadoop.IntSumReducer"
+		scope="step" />
+
+</beans>
