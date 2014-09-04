@@ -270,23 +270,20 @@ $ source hadoop-env
 $ hdfs namenode -format
 ----
 
-=== Install Hive
+=== Create initial directories and set permissions
 
-We need to download the binary distribution. The latest version available when writing this is Apache Hive 0.13.1. The link for downloading is available at link:http://www.us.apache.org/dist/hive/hive-0.13.1/[http://www.us.apache.org/dist/hive/hive-0.13.1/]. Logged in as the `hadoop` user download the `apache-hive-0.13.1-bin.tar.gz` archive and unpack it locally.  
-
-You can unpack the distribution with:
-
+First start HDFS using:
 [source,bash]
 ----
-$ tar xzf ~/Downloads/apache-hive-0.13.1-bin.tar.gz
+$ ./hadoop-2.4.1/sbin/start-dfs.sh
 ----
 
-=== Create initial directories and set permissions
+Then run the following commands:
 
 [source,bash]
 ----
 $ HADOOP_USER_NAME=hadoop hadoop fs -chown hdfs /
-$ HADOOP_USER_NAME=hadoop hadoop fs -chown hdfs /tmp
+$ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /tmp
 $ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /tmp
 $ HADOOP_USER_NAME=hdfs hadoop fs -mkdir /user
 $ HADOOP_USER_NAME=hdfs hadoop fs -chmod 777 /user
@@ -300,6 +297,16 @@ $ HADOOP_USER_NAME=hive hadoop fs -mkdir -p /user/hive/warehouse
 $ HADOOP_USER_NAME=hive hadoop fs -chmod 777 /user/hive/warehouse
 ----
 
+=== Install Hive
+
+We need to download the binary distribution. The latest version available when writing this is Apache Hive 0.13.1. The link for downloading is available at link:http://www.us.apache.org/dist/hive/hive-0.13.1/[http://www.us.apache.org/dist/hive/hive-0.13.1/]. Logged in as the `hadoop` user download the `apache-hive-0.13.1-bin.tar.gz` archive and unpack it locally.  
+
+You can unpack the distribution with:
+
+[source,bash]
+----
+$ tar xzf ~/Downloads/apache-hive-0.13.1-bin.tar.gz
+----
 
 Set the Hive environment:
 
