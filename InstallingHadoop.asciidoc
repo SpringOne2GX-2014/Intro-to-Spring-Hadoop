@@ -256,7 +256,7 @@ export YARN_CONF_DIR=$HADOOP_CONF_DIR
 export PATH=$PATH:$HADOOP_PREFIX/bin
 ----
 
-You can put these in a file named `hadoop-env` and then just `source that file like:
+You can put these in a file named `hadoop-env` and then just `source` that file like:
 
 [source,bash]
 ----
