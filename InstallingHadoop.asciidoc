@@ -80,7 +80,7 @@ Run the following commands to turn off the firewall:
 
 ==== Configure SSH
 
-The next step is to make it possible to create an Secure Shell (SSH) connection to localhost without being prompted for a password. Hadoop is designed to run on multiple servers and uses SSH to connect and start services on remote servers.
+The next step is to make it possible to create a Secure Shell (SSH) connection to localhost without being prompted for a password. Hadoop is designed to run on multiple servers and uses SSH to connect and start services on remote servers.
 
 The CentOS default install should have SSH installed, if not install it logged in as `root`:
 
@@ -128,7 +128,7 @@ Connection to borneo closed.
 
 To install and run Hadoop we will be using a recent version of Java 7. We could use a late Java 6 update, but the Hadoop ecosystem of projects seems to be slowly moving towards Java 7 as the preferred platform.
 
-For CentOS/Red Hat Linux you we install OpenJDK by running this command as `root`:
+For CentOS/Red Hat Linux we install OpenJDK by running this command as `root`:
 
 [source]
 ----
@@ -137,7 +137,7 @@ For CentOS/Red Hat Linux you we install OpenJDK by running this command as `root
 
 === Download Hadoop
 
-We need to download the binary distribution. The latest version available when writing this is Apache Hadoop 2.4.1. The link for downloading is available at http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/[http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/]. Log in as the `hadoop` user and download the `hadoop-2.4.1.tar.gz` archive and unpack it locally.  
+We need to download the binary distribution. The version we will be using is Apache Hadoop 2.4.1. The link for downloading is available at http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/[http://www.us.apache.org/dist/hadoop/common/hadoop-2.4.1/]. Log in as the `hadoop` user and download the `hadoop-2.4.1.tar.gz` archive and unpack it locally.
 
 You can unpack the distribution with:
 
@@ -150,7 +150,7 @@ We now have the base for our installation and we'll work through the steps to ge
 
 === Hadoop configuration files 
 
-The following configuration files are meant for a for single-node cluster running in pseudo-distributed mode. All configuration files are located in the `etc\hadoop` directory and we need to modify the following ones:
+The following configuration files are meant for a for single-node cluster running in pseudo-distributed mode. All configuration files are located in the `etc\hadoop` directory under the `~/hadoop-2.4.1` directory, and we need to modify the following ones:
 
 .core-site.xml
 [source,xml]
@@ -308,6 +308,8 @@ Set the Hive environment:
 $ export HIVE_HOME=~/apache-hive-0.13.1-bin
 $ export PATH=$PATH:$HIVE_HOME/bin
 ----
+
+You can add these to the `hadoop-env` file.
 
 === Start Hadoop and Hive server2
 
