@@ -5,6 +5,8 @@ Spring XD Batch Job MapReduce example.
 
 **Note:** This example depends on the `tweets-mapreduce` project, so you must first build and install that.
 
+**Note:** You need to set the `XD_HOME` environment variable to point to your XD installation.
+
 Requires that a tweets-hadoop*.txt file is available in HDFS under /twets/input/batch dir.
 
 From the XD shell run this:

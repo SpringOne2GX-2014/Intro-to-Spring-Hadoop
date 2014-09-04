@@ -5,6 +5,8 @@ Spring XD Batch Job Workflow example.
 
 **Note:** This example depends on the `tweets-mapreduce` project, so you must first build and install that.
 
+**Note:** You need to set the `XD_HOME` environment variable to point to your XD installation.
+
 Build with:
 
     $ mvn clean package install
