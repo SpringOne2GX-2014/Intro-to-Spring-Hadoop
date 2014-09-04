@@ -196,6 +196,21 @@ The following configuration files are meant for a for single-node cluster runnin
 </configuration>
 ----
 
+.mapred-site.xml
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+ 
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+
+</configuration>
+----
+
 .yarn-site.xml
 [source,xml]
 ----
