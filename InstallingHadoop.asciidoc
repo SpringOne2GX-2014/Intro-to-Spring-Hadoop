@@ -226,6 +226,11 @@ The following configuration files are meant for a for single-node cluster runnin
         <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
         <value>org.apache.hadoop.mapred.ShuffleHandler</value>
     </property>
+    
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>borneo</value>
+    </property>
 
     <!-- To increase number of apps that can run in YARN -->
     <property>
