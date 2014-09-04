@@ -1,0 +1,178 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.springdeveloper.demo</groupId>
+	<artifactId>xd-batch-workflow</artifactId>
+	<version>0.1.0</version>
+
+	<name>tweets-xd-batch</name>
+	<description>Spring XD Example Batch Workflow</description>
+	<packaging>jar</packaging>
+
+	<parent>
+		<groupId>io.spring.platform</groupId>
+		<artifactId>platform-bom</artifactId>
+		<version>1.0.1.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<properties>
+		<spring-data-hadoop.version>2.0.2.RELEASE-hadoop24</spring-data-hadoop.version>
+		<hadoop.version>2.4.1</hadoop.version>
+		<hive.version>0.13.0</hive.version>
+		<guava.version>16.0.1</guava.version>
+		<java.version>1.7</java.version>
+		<spring.xd.home>${env.XD_HOME}</spring.xd.home>
+		<spring.xd.job>tweets-workflow</spring.xd.job>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-hadoop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-common</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-mapreduce-client-jobclient</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.springdeveloper.demo</groupId>
+			<artifactId>tweets-mapreduce</artifactId>
+			<version>0.1.0</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.hive</groupId>
+			<artifactId>hive-jdbc</artifactId>
+			<version>${hive.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.velocity</groupId>
+					<artifactId>velocity</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>spring-milestone</id>
+			<url>http://repo.spring.io/libs-milestone</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<plugins>
+ 			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>job-jar</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+					    	<outputDirectory>${project.build.directory}/xd-lib</outputDirectory>
+					    	<includeArtifactIds>tweets-mapreduce</includeArtifactIds>
+					    	<stripVersion>true</stripVersion>
+							<excludeTransitive>true</excludeTransitive>
+						</configuration>
+					</execution>
+					<execution>
+						<id>hive-jars</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+					    	<outputDirectory>${project.build.directory}/xd-lib</outputDirectory>
+					    	<includeArtifactIds>hive-jdbc,hive-common,hive-service,httpclient,httpcore,libthrift</includeArtifactIds>
+					    	<stripVersion>false</stripVersion>
+							<excludeTransitive>false</excludeTransitive>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/assembly.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>assembly</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>install</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<copy todir="${spring.xd.home}/modules/job/${spring.xd.job}/config">
+									<fileset dir="${project.build.directory}/${project.artifactId}-${project.version}-bin/modules/job"/>
+								</copy>
+								<copy todir="${spring.xd.home}/modules/job/${spring.xd.job}/lib">
+									<fileset dir="${project.build.directory}/${project.artifactId}-${project.version}-bin/lib"/>
+								</copy>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.3.1</version>
+				<executions>
+					<execution>
+						<id>enforce-property</id>
+						<goals>
+						  <goal>enforce</goal>
+						</goals>
+						<phase>verify</phase>
+						<configuration>
+							<rules>
+								<requireProperty>
+									<property>spring.xd.home</property>
+							  		<message>*** FAILURE *** You must specify the XD home directory, either export XD_HOME or use -Dspring.xd.home</message>
+								</requireProperty>
+						  	</rules>
+						  	<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+
