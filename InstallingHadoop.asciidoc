@@ -361,5 +361,5 @@ To run Beeline Hive client run:
 [source,bash]
 ----
 $ beeline
-!connect jdbc:hive2://borneo:10000 trisberg spring org.apache.hive.jdbc.HiveDriver
+!connect jdbc:hive2://borneo:10000 hadoop hive org.apache.hive.jdbc.HiveDriver
 ----
