@@ -9,7 +9,8 @@
 
 	<configuration>
 		fs.defaultFS=${spring.hadoop.fsUri}
-		yarn.resourcemanager.address=${spring.hadoop.resourceManagerHost}
+		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
+		mapreduce.framework.name=yarn
 	</configuration>
 
 	<job id="tweetCountJob"
