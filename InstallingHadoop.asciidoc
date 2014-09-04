@@ -273,6 +273,7 @@ $ hdfs namenode -format
 === Create initial directories and set permissions
 
 First start HDFS using:
+
 [source,bash]
 ----
 $ ./hadoop-2.4.1/sbin/start-dfs.sh
@@ -296,6 +297,15 @@ $ HADOOP_USER_NAME=hadoop hadoop fs -chmod -R 777 /tmp/hadoop-yarn
 $ HADOOP_USER_NAME=hive hadoop fs -mkdir -p /user/hive/warehouse
 $ HADOOP_USER_NAME=hive hadoop fs -chmod 777 /user/hive/warehouse
 ----
+
+You can now shut down HDFS using:
+
+[source,bash]
+----
+$ ./hadoop-2.4.1/sbin/stop-dfs.sh
+----
+
+
 
 === Install Hive
 
