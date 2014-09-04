@@ -1,5 +1,8 @@
 // use the shell (made available under variable fsh)
 
+if (!fsh.test(hiveDir)) {
+   fsh.mkdir(hiveDir)
+}
 if (fsh.test(inputDir)) {
    fsh.rmr(inputDir)
 }

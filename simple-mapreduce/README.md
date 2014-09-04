@@ -5,7 +5,7 @@ Simple MapReduce example.
 
 **Note:** This example depends on the `tweets-mapreduce` project, so you must first build and install that.
 
-Requires that a tweets-hadoop*.txt file is available in HDFS under /twets/input/simple dir.
+Requires that a tweets-hadoop*.txt file is available in HDFS under /twets/input/data dir.
 
 From the XD shell run this:
 
@@ -13,7 +13,7 @@ From the XD shell run this:
 xd:>hadoop config fs --namenode hdfs://borneo:8020
 xd:>hadoop fs mkdir /tweets/input
 xd:>hadoop fs mkdir /tweets/input/simple
-xd:>hadoop fs copyFromLocal --from /Users/trisberg/Projects/Intro-to-Spring-Hadoop/data/hadoop-tweets_2014-08-11.txt --to /tweets/input/simple
+xd:>hadoop fs copyFromLocal --from /Users/trisberg/Projects/Intro-to-Spring-Hadoop/data/hadoop-tweets_2014-08-11.txt --to /tweets/input/data
 ```
 
 **Note:** Adjust the `--from` path to what you are using.

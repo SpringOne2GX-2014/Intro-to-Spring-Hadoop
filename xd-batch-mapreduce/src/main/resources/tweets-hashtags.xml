@@ -11,6 +11,7 @@
 		fs.defaultFS=${spring.hadoop.fsUri}
 		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
 		mapreduce.framework.name=yarn
+		mapreduce.jobhistory.address=${spring.hadoop.jobHistoryAddress}
 	</hadoop:configuration>
 
 	<!--
@@ -29,9 +30,9 @@
 	<hadoop:job-tasklet id="hashtagcountTasklet" job-ref="hashtagcountJob"/>
 
 	<hadoop:job id="hashtagcountJob"
-		input-path="#{jobParameters['input.path']?:'/tweets/input/batch'}"
-		output-path="#{jobParameters['output.path']?:'/tweets/output'}"
-		libs="file:${xd.home}/modules/job/tweets-hashtags/lib/tweets-mapreduce.jar"
+		input-path="#{jobParameters['input.path']?:'/tweets/input/data'}"
+		output-path="#{jobParameters['output.path']?:'/tweets/results'}"
+		jar="file:${xd.home}/modules/job/tweets-hashtags/lib/tweets-mapreduce.jar"
 		mapper="com.springdeveloper.hadoop.TweetCountMapper"
 		reducer="com.springdeveloper.hadoop.IntSumReducer"
 		scope="step" />

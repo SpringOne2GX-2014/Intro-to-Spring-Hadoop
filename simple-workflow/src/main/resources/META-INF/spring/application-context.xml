@@ -22,7 +22,7 @@
 	<job id="tweetCountJob"
 		input-path="${hdfs.input.path}"
 		output-path="${hdfs.output.path}"
-		libs="file:#{systemProperties['user.dir']}/target/lib/tweets-mapreduce.jar"
+		jar="file:#{systemProperties['user.dir']}/target/lib/tweets-mapreduce.jar"
 		mapper="com.springdeveloper.hadoop.TweetCountMapper"
 		reducer="com.springdeveloper.hadoop.IntSumReducer"/>
 

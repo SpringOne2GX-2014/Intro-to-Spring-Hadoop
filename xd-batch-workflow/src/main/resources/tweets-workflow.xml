@@ -19,6 +19,7 @@
 		fs.defaultFS=${spring.hadoop.fsUri}
 		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
 		mapreduce.framework.name=yarn
+		mapreduce.jobhistory.address=${spring.hadoop.jobHistoryAddress}
 	</hadoop:configuration>
 	
 	<!--
@@ -32,6 +33,7 @@
 		<entry key="inputPath" value="#{jobParameters['input.path']?:'/tweets/input/'}"/>
 		<entry key="tweetDate" value="#{(jobParameters['local.file'].split('_')[1]).substring(0,10)}"/>
 		<entry key="outputPath" value="#{jobParameters['output.path']?:'/tweets/output'}"/>
+		<entry key="hivePath" value="#{jobParameters['hive.path']?:'/tweets/hive'}"/>
 	</util:map>
 
 	<batch:job id="job">
@@ -68,6 +70,7 @@
 			<hadoop:property name="localFile" value="#{jobParameters['local.file']}"/>
 			<hadoop:property name="inputDir" value="#{stepExpr['inputPath']+stepExpr['tweetDate']}"/>
 			<hadoop:property name="outputDir" value="#{stepExpr['outputPath']}"/>
+			<hadoop:property name="hiveDir" value="#{stepExpr['hivePath']}"/>
 		</hadoop:script>
 	</hadoop:script-tasklet>
 
@@ -91,7 +94,7 @@
 		<property name="dataSource" ref="hiveDataSource"/>
 		<property name="sql">
 			<value>
-			insert overwrite directory '#{stepExpr['outputPath']}/influencers'
+			insert overwrite directory '#{stepExpr['hivePath']}/influencers'
 			select tweets.username, tweets.followers
 			from 
 			  (select distinct 
@@ -135,7 +138,7 @@
  
 	<bean id="hdfsReader" class="org.springframework.batch.item.file.MultiResourceItemReader" scope="step">
 		<property name="resources" 
-			value="#{ @hdfsResourceLoader.getResources(stepExpr['outputPath'] + '/influencers/*') }"/>
+			value="#{ @hdfsResourceLoader.getResources(stepExpr['hivePath'] + '/influencers/*') }"/>
 		<property name="delegate" ref="flatFileItemReader"/>
 	</bean>
 	<bean id="flatFileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader">
