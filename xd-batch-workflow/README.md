@@ -24,5 +24,5 @@ Alternatively, launch job with a stream looking for files copied to a directory:
 **Note:** 
 
 * Adjust the path for the `local.file` parameter or `--dir` option to what you are using.
-* Before launching the job manually or after you start the stream, copy the `data/hadoop-tweets_2014-09-02.txt` file to the input direcctory you are using.
+* Before launching the job manually or after you start the stream, copy the `data/hadoop-tweets_2014-09-02.txt` file to the input directory you are using.
 * Remember that the input file will be deleted after it is copied to HDFS.
