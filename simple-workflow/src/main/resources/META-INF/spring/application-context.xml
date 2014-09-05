@@ -11,6 +11,7 @@
 		fs.defaultFS=${spring.hadoop.fsUri}
 		yarn.resourcemanager.hostname=${spring.hadoop.resourceManagerHost}
 		mapreduce.framework.name=yarn
+		mapreduce.jobhistory.address=${spring.hadoop.jobHistoryAddress}
 	</configuration>
 
 	<script id="setupScript" location="file-prep.groovy">
