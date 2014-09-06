@@ -310,7 +310,7 @@ $ hadoop fs -mkdir -p /user/hive/warehouse
 $ hadoop fs -chmod 777 /user/hive/warehouse
 ----
 
-Now, we can craete some directories we need for the demo:
+Now, we can create some directories we need for the demo:
 
 [source,bash]
 ----
