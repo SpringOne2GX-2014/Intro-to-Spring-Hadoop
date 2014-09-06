@@ -69,9 +69,9 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-					    	<outputDirectory>${project.build.directory}/xd-lib</outputDirectory>
-					    	<includeArtifactIds>tweets-mapreduce</includeArtifactIds>
-					    	<stripVersion>true</stripVersion>
+							<outputDirectory>${project.build.directory}/xd-lib</outputDirectory>
+							<includeArtifactIds>tweets-mapreduce</includeArtifactIds>
+							<stripVersion>true</stripVersion>
 							<excludeTransitive>true</excludeTransitive>
 						</configuration>
 					</execution>
@@ -79,7 +79,6 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.4</version>
 				<configuration>
 					<descriptors>
 						<descriptor>src/main/assembly/assembly.xml</descriptor>
