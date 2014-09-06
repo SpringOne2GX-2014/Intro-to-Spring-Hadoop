@@ -296,7 +296,7 @@ First start HDFS using:
 $ ./hadoop-2.4.1/sbin/start-dfs.sh
 ----
 
-Then run the following commands:
+Then run the following commands to set up common directories and permissions:
 
 [source,bash]
 ----
@@ -304,14 +304,20 @@ $ hadoop fs -mkdir /tmp
 $ hadoop fs -chmod 1777 /tmp
 $ hadoop fs -mkdir /user
 $ hadoop fs -chmod 1777 /user
-$ hadoop fs -mkdir /xd
-$ hadoop fs -chmod 777 /xd
-$ hadoop fs -mkdir /tweets
-$ hadoop fs -chmod 777 /tweets
 $ hadoop fs -mkdir -p /tmp/hadoop-yarn/staging/history
 $ hadoop fs -chmod -R 777 /tmp/hadoop-yarn
 $ hadoop fs -mkdir -p /user/hive/warehouse
 $ hadoop fs -chmod 777 /user/hive/warehouse
+----
+
+Now, we can craete some directories we need for the demo:
+
+[source,bash]
+----
+$ hadoop fs -mkdir /xd
+$ hadoop fs -chmod 777 /xd
+$ hadoop fs -mkdir /tweets
+$ hadoop fs -chmod 777 /tweets
 ----
 
 You can now shut down HDFS using:
