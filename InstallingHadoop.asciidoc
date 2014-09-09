@@ -386,3 +386,19 @@ To run Beeline Hive client run:
 $ beeline
 !connect jdbc:hive2://borneo:10000 hadoop hive org.apache.hive.jdbc.HiveDriver
 ----
+
+=== Configure workstation network
+
+Add the IP address and host for the VM to your local `/etc/hosts` file:
+
+[source]
+----
+127.0.0.1   localhost barbados barbados.local
+255.255.255.255 broadcasthost
+::1             localhost 
+fe80::1%lo0 localhost
+
+192.168.59.103  borneo
+----
+
+You should now be able to run the demos for *Introduction to Spring for Apache Hadoop*
