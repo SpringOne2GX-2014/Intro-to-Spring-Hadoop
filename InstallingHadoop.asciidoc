@@ -304,8 +304,6 @@ $ hadoop fs -mkdir /tmp
 $ hadoop fs -chmod 1777 /tmp
 $ hadoop fs -mkdir /user
 $ hadoop fs -chmod 1777 /user
-$ hadoop fs -mkdir /apps
-$ hadoop fs -chmod 1777 /apps
 $ hadoop fs -mkdir -p /tmp/hadoop-yarn/staging/history
 $ hadoop fs -chmod -R 777 /tmp/hadoop-yarn
 $ hadoop fs -mkdir -p /user/hive/warehouse
@@ -320,6 +318,8 @@ $ hadoop fs -mkdir /xd
 $ hadoop fs -chmod 777 /xd
 $ hadoop fs -mkdir /tweets
 $ hadoop fs -chmod 777 /tweets
+$ hadoop fs -mkdir /apps
+$ hadoop fs -chmod 777 /apps
 ----
 
 You can now shut down HDFS using:
