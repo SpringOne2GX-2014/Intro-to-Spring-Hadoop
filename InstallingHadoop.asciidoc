@@ -387,7 +387,7 @@ $ beeline
 !connect jdbc:hive2://borneo:10000 hadoop hive org.apache.hive.jdbc.HiveDriver
 ----
 
-=== Configure workstation network
+=== Configure workstation network and environment
 
 Add the IP address and host for the VM to your local `/etc/hosts` file:
 
@@ -399,6 +399,16 @@ Add the IP address and host for the VM to your local `/etc/hosts` file:
 fe80::1%lo0 localhost
 
 192.168.59.103  borneo
+----
+
+Set environment variables for XD_HOME and the Hadoop configuration:
+
+[source]
+----
+export XD_HOME=~/SpringOne/spring-xd-1.0.0.RELEASE/xd
+export spring_hadoop_fsUri=hdfs://borneo:8020
+export spring_hadoop_resourceManagerHost=borneo
+export spring_hadoop_jobHistoryAddress=borneo:10020
 ----
 
 You should now be able to run the demos for *Introduction to Spring for Apache Hadoop*
