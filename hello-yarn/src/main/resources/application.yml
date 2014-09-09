@@ -1,0 +1,27 @@
+spring:
+    hadoop:
+        fsUri: hdfs://borneo:8020
+        resourceManagerHost: borneo
+        jobHistoryAddress: borneo:10020
+    yarn:
+        appName: hello-yarn
+        applicationDir: /apps/hello-yarn/
+        client:
+            startup:
+                action: submit
+            localizer:
+                patterns:
+                  - "hello-yarn*jar"
+            files:
+              - "file:target/hello-yarn-0.1.0.jar"
+            launchcontext:
+                archiveFile: hello-yarn-0.1.0.jar
+        appmaster:
+            localizer:
+                patterns:
+                  - "hello-yarn*jar"
+            containerCount: 1
+            launchcontext:
+                archiveFile: hello-yarn-0.1.0.jar
+                arguments:
+                    --spring.profiles.active: container
