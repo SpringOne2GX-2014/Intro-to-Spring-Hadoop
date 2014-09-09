@@ -1,7 +1,9 @@
 Intro-to-Spring-Hadoop
 ======================
 
-Examples and Slides for "Introduction to Spring for Apache Hadoop" at SpringOne2GX 2014
+Examples and [Slides for "Introduction to Spring for Apache Hadoop"](https://github.com/SpringOne2GX-2014/Intro-to-Spring-Hadoop/blob/master/SpringOne2GX_2014_Spring_for_Apache_Hadoop.pdf) at SpringOne2GX 2014
+
+If you need a basic Hadoop installation in a VM to run on your development system, we provide a basic step for step document for ["Installing Hadoop"](https://github.com/SpringOne2GX-2014/Intro-to-Spring-Hadoop/blob/master/InstallingHadoop.asciidoc). 
 
 Before starting [Spring XD](http://projects.spring.io/spring-xd/) or running any of the examples, start [Redis](http://redis.io/download) and your [Hadoop VM](https://github.com/SpringOne2GX-2014/Intro-to-Spring-Hadoop/blob/master/InstallingHadoop.asciidoc). You should also set the following environment variables:
 
